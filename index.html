@@ -1,22 +1,55 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kalkulator</title>
+    <script lang="javascript">
+
+
+        function kalk(op){
+
+            if (isNaN(document.form.L1.value)==true||
+                isNaN(document.form.L2.value)==true)
+                {alert("Można wpisywać tylko liczby!")}
+
+
+            document.form.wynik.value="";
+            switch (op){
+                case "dodaj":
+                    document.form.wynik.value=
+                    eval(document.form.L1.value)+
+                    eval(document.form.L2.value);
+                    break;
+                case "odejm":
+                    document.form.wynik.value=
+                    eval(document.form.L1.value)-
+                    eval(document.form.L2.value);
+                    break;   
+                case "razy":
+                    document.form.wynik.value=
+                    eval(document.form.L1.value)*
+                    eval(document.form.L2.value);
+                    break;
+                case "dziel":
+                    (document.form.L2.value==0) 
+                    ? (document.form.wynik.value=("Nie dziel przez 0!")) 
+                    : (document.form.wynik.value=eval(document.form.L1.value)/eval(document.form.L2.value)); 
+                    break;
+            }
+        }
+    </script>
 </head>
 <body>
-    <h1>Prosty Kalkulator</h1>
-    <form id="calculator">
-        <input type="number" id="number1" placeholder="Pierwsza liczba" required>
-        <input type="number" id="number2" placeholder="Druga liczba" required>
-        <br>
-        <button ............................>Dodaj</button>
-        <button ............................>">Odejmij</button>
-        <button ............................>">Pomnóż</button>
-        <button ............................>">Podziel</button>
+    <form name="form">
+        <input type="text" name="L1" onclick="this.value=''">
+        <input type="text" name="L2" onclick="this.value=''">
+        <input type="button" value="+" name="dodaj" onclick="kalk('dodaj')">
+        <input type="button" value="-" name="odejm" onclick="kalk('odejm')">
+        <input type="button" value="*" name="razy" onclick="kalk('razy')">
+        <input type="button" value="/" name="dziel" onclick="kalk('dziel')">
+        wynik = 
+        <input type="text" name="wynik">
     </form>
-    <h2>Wynik: <span id="result"></span></h2>
-
-    <script src="script.js"></script>
 </body>
 </html>
